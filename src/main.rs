@@ -1,7 +1,7 @@
 use std::io::TcpStream;
 use std::collections::HashMap;
 
-use qt::qvariant::Type as qVariantType;
+use qt::qvarianttypes::Type as qVariantType;
 mod qt;
 
 
@@ -20,9 +20,11 @@ fn main() {
     let result = stream.read_be_u32().ok().expect("Did not receive data from stream");
     println!("0x{}", result);
 
-    
+    let mut initial = HashMap::new();
+    initial.insert("hi this is a type", qVariantType::Quaternion);
 
     drop(stream);
+    println!("{}", initial);
     println!("Hopefully the core has shut the fuck up by now");
 }
 
