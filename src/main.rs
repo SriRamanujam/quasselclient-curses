@@ -1,4 +1,8 @@
-use std::io::{TcpStream, BufferedStream};
+use std::io::TcpStream;
+use std::collections::HashMap;
+
+use qt::qvariant::Type as qVariantType;
+mod qt;
 
 
 fn main() {
@@ -13,16 +17,11 @@ fn main() {
 
     println!("We are now going to sit on our asses and wait for the buf to come back");
 
-    loop {
-        let _ = match stream.read_be_u32() {
-            Ok(data) => {
-                println!("0x{:x}", data)
-            },
-            Err(err) => {
-                panic!("error reading response: {}", err)
-            }
-        };
-    }
+    let result = stream.read_be_u32().ok().expect("Did not receive data from stream");
+    println!("0x{}", result);
+
+    
+
     drop(stream);
     println!("Hopefully the core has shut the fuck up by now");
 }
