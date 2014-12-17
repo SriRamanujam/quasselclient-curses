@@ -1,9 +1,9 @@
 [package]
 
 name = "quasselclient-curses"
-version = "0.0.1-alpha-pre"
+version = "0.0.1"
 authors = ["Sri Ramanujam <me@sriramanujam.me>"]
 
 [dependencies.ncurses]
-
 git = "https://github.com/jeaye/ncurses-rs.git"
+
